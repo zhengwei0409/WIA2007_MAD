@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout
+
+    android:id="@+id/frameLayout2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InfoCoffeeHealth">
+
+
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="344dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="56dp"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="Is coffee good for your heart health? 3 studies offer insights"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="116dp"
+        android:fontFamily="@font/open_sans_light"
+        android:text="Sun, 25/12/2024 by"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/MrYasemin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="116dp"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="  Mr Yasemin"
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@+id/Date"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/MrYaseminImg2"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginEnd="197dp"
+        android:src="@drawable/mryasemin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/CoffeeRounded"
+        android:layout_width="361dp"
+        android:layout_height="240dp"
+        android:layout_marginTop="144dp"
+        android:layout_marginEnd="24dp"
+        android:src="@drawable/roundedcoffee"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/part1"
+        android:layout_width="358dp"
+        android:layout_height="444dp"
+        android:layout_marginTop="400dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/open_sans_medium"
+        android:text="Millions of people are regular coffee drinkersTrusted Source. Some people prefer to consume the popular caffeinated beverage in the morning to increase alertnessTrusted Source and alleviate fatigue, while others consume it throughout the day for multiple other health benefitsTrusted Source.
+
+\n\nConsidering that around 1 in 7 deaths worldwide are caused by coronary heart disease, coffee’s potential cardioprotective benefits make it an exciting topic of research.
+
+The most recent study on this topic, published in Rheumatology on October 9, found that consuming more caffeine—found in sources such as coffee, tea, and cocoa—may help improve blood vessel health. What made this study particularly interesting was that it was conducted in patients with lupus, an autoimmune disease that has been tied to an increased riskTrusted Source of stroke, heart attack, and cardiovascular disease.
+
+\n\nBut what does all the evidence so far say? Can coffee improve heart health, or does too much cause harm?
+
+\n\nBuilding upon Medical News Today‘s regular in-depth reporting on studies related to heart health, this overview aims to provide a snapshot of the key pieces of research on caffeine‘s effects on the heart and overall health with experts’ views on these findings."
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

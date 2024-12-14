@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".Record3"
+    android:background="@drawable/blue_white_background_two">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp">
+
+        <ImageView
+            android:id="@+id/folder"
+            android:layout_width="63dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="77dp"
+            android:layout_marginTop="28dp"
+            android:src="@drawable/folder"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/TitleMR3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="157dp"
+            android:layout_marginTop="28dp"
+            android:fontFamily="@font/open_sans_bold"
+            android:text="Medical Record 3"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/TitleSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="157dp"
+            android:layout_marginTop="58dp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="40 MB"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/MR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="136dp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="Medical Report"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/DateMR3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="Date: 17/11/2024"
+            android:textColor="#7A7878"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/MR" />
+
+        <ImageView
+            android:id="@+id/human"
+            android:layout_width="350dp"
+            android:layout_height="350dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="216dp"
+            android:src="@drawable/humanthree"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/PME"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="585dp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="Patient Medical Examination"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/whitebg1"
+            android:layout_width="214dp"
+            android:layout_height="214dp"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="623dp"
+            android:src="@drawable/whiterounded"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/whitebg2"
+            android:layout_width="135dp"
+            android:layout_height="135dp"
+            android:layout_marginStart="248dp"
+            android:layout_marginTop="702dp"
+            android:src="@drawable/whiterounded"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/whitebg3"
+            android:layout_width="138dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="245dp"
+            android:layout_marginTop="623dp"
+            android:src="@drawable/whiterectangular"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/bodycomposition"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="53dp"
+            android:layout_marginTop="630dp"
+            android:src="@drawable/bodycomposition"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/TitleBC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="95dp"
+            android:layout_marginTop="643dp"
+            android:fontFamily="@font/open_sans_bold"
+            android:text="Body Composition"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/BCDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="679dp"
+            android:fontFamily="@font/open_sans_medium"
+            android:text="Glucose \n\nCholestrol \n\nHaemoglobin \n\nTrombocyte \n\nSodium \n\nPotassium"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/BCDetails2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="157dp"
+            android:layout_marginTop="679dp"
+            android:fontFamily="@font/open_sans_medium"
+            android:gravity="end"
+            android:text="7.2 mmol/l \n\n170 mg/dl\n\n 9.1 mmol/l\n\n 372 x 109/l\n\n 140 mmol/l\n\n 132 mmol/l"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/heartrate"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="256dp"
+            android:layout_marginTop="637dp"
+            android:src="@drawable/heartrate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/TitleHR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="301dp"
+            android:layout_marginTop="637dp"
+            android:fontFamily="@font/open_sans_bold"
+            android:text="Heart Rate"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/HRbpm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="301dp"
+            android:layout_marginTop="652dp"
+            android:fontFamily="@font/open_sans_medium"
+            android:text="132 bpm"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/heartpulse"
+            android:layout_width="84dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="296dp"
+            android:layout_marginTop="663dp"
+            android:src="@drawable/heartpulse"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/Tests"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="264dp"
+            android:layout_marginTop="763dp"
+            android:fontFamily="@font/open_sans_medium"
+            android:text="• Covid Test"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/testicon"
+            android:layout_width="57dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="323dp"
+            android:layout_marginTop="739dp"
+            android:src="@drawable/test"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/TitleSupplement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="853dp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="Supplement"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/whitebg4"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="888dp"
+            android:src="@drawable/whiterounded"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/Sup1"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="890dp"
+            android:src="@drawable/paxvolid"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

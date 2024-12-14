@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/frameLayout6"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InfoFightBacteria">
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="341dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="Fighting Bacteria with Viruses"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/open_sans_light"
+        android:text="Tue, 07/01/2025 by"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title" />
+
+    <TextView
+        android:id="@+id/MrsAriana"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="  Mrs Ariana"
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@+id/Date"
+        app:layout_constraintTop_toBottomOf="@+id/Title" />
+
+    <ImageView
+        android:id="@+id/MrsArianaImg"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/mrsariana"
+        app:layout_constraintStart_toEndOf="@+id/MrsAriana"
+        app:layout_constraintTop_toBottomOf="@+id/Title" />
+
+    <ImageView
+        android:id="@+id/FightBateriaImg"
+        android:layout_width="361dp"
+        android:layout_height="205dp"
+        android:layout_marginTop="124dp"
+        android:layout_marginEnd="24dp"
+        android:src="@drawable/fightbacteria"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/part1"
+        android:layout_width="356dp"
+        android:layout_height="106dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="28dp"
+        android:fontFamily="@font/open_sans_medium"
+        android:text="Bacteria that can’t be killed with antibiotics are a growing problem around the world. These cause serious infections in hospitals and other health care settings.
+
+Scientists have been looking for new ways to kill drug-resistant bacteria. One idea has been to use bacteriophages, also called phages. Phages are viruses that infect bacteria but are harmless to people."
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/FightBateriaImg" />
+
+    <ImageView
+        android:id="@+id/Virus"
+        android:layout_width="166dp"
+        android:layout_height="234dp"
+        android:layout_marginStart="28dp"
+        android:src="@drawable/virus"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/part1" />
+
+    <TextView
+        android:id="@+id/part2"
+        android:layout_width="175dp"
+        android:layout_height="226dp"
+        android:layout_marginEnd="28dp"
+        android:fontFamily="@font/open_sans_medium"
+        android:text="In a new study, researchers treated a man with a life-threating lung infection with phages. The team found two phages that could kill the bacteria he was infected with. The man then received treatment with these phages for over a year. His infection eventually disappeared, and he was able to have a lung transplant. These results show the promise of using phages to kill bacteria."
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/part1" />
+
+    <TextView
+        android:id="@+id/part3"
+        android:layout_width="361dp"
+        android:layout_height="148dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/open_sans_medium"
+        android:text="These studies highlight the potential of phage therapy as a method of personalized, precision treatment for severe antibiotic-resistant infections. More work is needed to optimize phage delivery and prevent the immune system from neutralizing the phages. Additional phages that can kill more types of bacteria are also required.
+
+“We’ve not yet figured out how to find or engineer phages that will get every strain of bacteria in these patients,” Hatfull notes. “That represents one of the major challenges ahead.”
+
+—by Sharon Reynolds"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/part2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

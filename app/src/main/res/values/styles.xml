@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CustomScrollBarStyle">
+        <item name="android:scrollbarThumbHorizontal">@drawable/scrollbar_front</item>
+        <item name="android:scrollbarTrackHorizontal">@drawable/scrollbar_bg</item>
+    </style>
+</resources>

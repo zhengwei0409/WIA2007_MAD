@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InfoHubPage">
+
+    <TextView
+        android:id="@+id/InfoHubTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/open_sans_semibold"
+        android:text="InfoHub"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/InfoHubIcon"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/InfoHubIcon"
+        android:layout_width="26dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="268dp"
+        android:src="@drawable/network"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- HorizontalScrollView -->
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="79dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:scrollbars="horizontal"
+        android:fadeScrollbars="false"
+        android:theme="@style/CustomScrollBarStyle">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- First Page -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/CovidImage"
+                    android:layout_width="414dp"
+                    android:layout_height="280dp"
+                    android:src="@drawable/covid"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:layout_editor_absoluteY="16dp" />
+
+                <ImageView
+                    android:id="@+id/MrsElena"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="120dp"
+                    android:src="@drawable/mrselena"
+                    app:layout_constraintStart_toStartOf="@+id/CovidImage"
+                    app:layout_constraintTop_toTopOf="@+id/CovidImage" />
+
+                <TextView
+                    android:id="@+id/ByMrsElena"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="120dp"
+                    android:fontFamily="@font/open_sans_medium"
+                    android:text="By Mrs Elena"
+                    android:textColor="#FFFFFF"
+                    android:textSize="13sp"
+                    app:layout_constraintStart_toEndOf="@+id/MrsElena"
+                    app:layout_constraintTop_toTopOf="@+id/CovidImage" />
+
+                <TextView
+                    android:id="@+id/CovidText"
+                    android:layout_width="228dp"
+                    android:layout_height="85dp"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:text="Covid variant discovered and the latest policy is published"
+                    android:textColor="#FFFFFF"
+                    android:textSize="17sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ByMrsElena" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Second Page -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/CoffeeImg"
+                    android:layout_width="414dp"
+                    android:layout_height="280dp"
+                    android:src="@drawable/coffee"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:layout_editor_absoluteY="16dp" />
+
+                <ImageView
+                    android:id="@+id/MrYasemin"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/mryasemin"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="120dp" />
+
+                <TextView
+                    android:id="@+id/ByMrYasemin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="72dp"
+                    android:layout_marginTop="120dp"
+                    android:fontFamily="@font/open_sans_medium"
+                    android:text="By Mr Yasemin"
+                    android:textColor="#FFFFFF"
+                    android:textSize="13sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/CoffeeText"
+                    android:layout_width="228dp"
+                    android:layout_height="85dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="160dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:text="Is coffee good for your heart health? 3 studies offer insights"
+                    android:textColor="#FFFFFF"
+                    android:textSize="17sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Third Page -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/WalkImg"
+                    android:layout_width="414dp"
+                    android:layout_height="280dp"
+                    android:src="@drawable/walk"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:layout_editor_absoluteY="16dp" />
+
+                <ImageView
+                    android:id="@+id/MrFinnCohen"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/mrfinncohen"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="120dp" />
+
+                <TextView
+                    android:id="@+id/ByMrFinnDohen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="72dp"
+                    android:layout_marginTop="120dp"
+                    android:fontFamily="@font/open_sans_medium"
+                    android:text="By Mr Finn Cohen"
+                    android:textColor="#FFFFFF"
+                    android:textSize="13sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/WalkText"
+                    android:layout_width="228dp"
+                    android:layout_height="85dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="160dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:text="Daily walk may prolong lifespan"
+                    android:textColor="#FFFFFF"
+                    android:textSize="17sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/HotTopics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/open_sans_semibold"
+        android:text="Hot Topics"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+
+    <ImageView
+        android:id="@+id/MosquitoImg"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="12dp"
+        android:src="@drawable/mosquito"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/HotTopics" />
+
+    <ImageView
+        android:id="@+id/SneezeImg"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/sneeze"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Line1" />
+
+    <ImageView
+        android:id="@+id/FightBacteriaImg"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/bacteria"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Line3" />
+
+    <View
+        android:id="@+id/Line1"
+        android:layout_width="360dp"
+        android:layout_height="2dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="26dp"
+        android:background="#D3D0D0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DengueFever" />
+
+    <View
+        android:id="@+id/Line3"
+        android:layout_width="360dp"
+        android:layout_height="2dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="28dp"
+        android:background="#D3D0D0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/VirusMutates" />
+
+    <ImageView
+        android:id="@+id/MrKwame"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="56dp"
+        android:src="@drawable/mrkwame"
+        app:layout_constraintStart_toEndOf="@+id/MosquitoImg"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+
+    <TextView
+        android:id="@+id/ByMrKwame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="56dp"
+        android:fontFamily="@font/open_sans_medium"
+        android:text="By Mr Kwame"
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@+id/MrKwame"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+
+    <TextView
+        android:id="@+id/DengueFever"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/open_sans_semibold"
+        android:text="Symptoms and Treatment of Dengue Fever"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/MosquitoImg"
+        app:layout_constraintTop_toBottomOf="@+id/ByMrKwame" />
+
+    <ImageView
+        android:id="@+id/MrsSofia"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/mrssofia"
+        app:layout_constraintStart_toEndOf="@+id/SneezeImg"
+        app:layout_constraintTop_toBottomOf="@+id/Line1" />
+
+    <TextView
+        android:id="@+id/ByMrsSofia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/open_sans_medium"
+        android:text="By Mrs Sofia"
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@+id/MrsSofia"
+        app:layout_constraintTop_toBottomOf="@+id/Line1" />
+
+    <TextView
+        android:id="@+id/VirusMutates"
+        android:layout_width="202dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/open_sans_semibold"
+        android:text="How the Virus Mutates and Impacts Global Health"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/SneezeImg"
+        app:layout_constraintTop_toBottomOf="@+id/ByMrsSofia" />
+
+
+    <ImageView
+        android:id="@+id/MrsAriana"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/mrsariana"
+        app:layout_constraintStart_toEndOf="@+id/FightBacteriaImg"
+        app:layout_constraintTop_toBottomOf="@+id/Line3" />
+
+    <TextView
+        android:id="@+id/ByMrsAriana"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/open_sans_medium"
+        android:text="By Mrs Ariana"
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@+id/MrsAriana"
+        app:layout_constraintTop_toBottomOf="@+id/Line3" />
+
+    <TextView
+        android:id="@+id/FightBacteria"
+        android:layout_width="199dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/open_sans_semibold"
+        android:text="Fighting Bacteria with Viruses"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/FightBacteriaImg"
+        app:layout_constraintTop_toBottomOf="@+id/ByMrsAriana" />
+
+    <Button
+        android:id="@+id/SaveButton1"
+        android:layout_width="20dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="36dp"
+        android:backgroundTint="#E3E3E6"
+        android:foreground="@drawable/saveicon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+
+    <Button
+        android:id="@+id/SaveButton2"
+        android:layout_width="20dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="36dp"
+        android:backgroundTint="#E3E3E6"
+        android:foreground="@drawable/saveicon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Line1" />
+
+    <Button
+        android:id="@+id/SaveButton3"
+        android:layout_width="20dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="36dp"
+        android:backgroundTint="#E3E3E6"
+        android:foreground="@drawable/saveicon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Line3" />
+
+    <!--TEMPORARY-->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

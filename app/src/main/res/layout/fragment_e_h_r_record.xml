@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout8"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EHRRecord"
+    android:orientation="vertical"
+    android:background="@drawable/blue_white_background">
+
+    <SearchView
+        android:id="@+id/SearchView"
+        android:layout_width="312dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="49dp"
+        android:layout_marginTop="138dp"
+        android:background="@color/white"
+        android:iconifiedByDefault="false"
+        android:queryHint="Search health records or prescriptions"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/dropdownSpinner"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="49dp"
+        android:layout_marginTop="204dp"
+        android:entries="@array/spinner_items"
+        android:backgroundTint="#C8C8CC"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="49dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="312dp"
+        android:layout_marginTop="195dp"
+        android:backgroundTint="#C8C8CC"
+        android:foreground="@drawable/fileicon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/TitleRF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="148dp"
+        android:fontFamily="@font/open_sans_semibold"
+        android:text="Recent files"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--Place for medical records-->
+    <LinearLayout
+        android:id="@+id/medicalRecordsLayout"
+        android:layout_width="310dp"
+        android:layout_height="310dp"
+        android:layout_marginTop="256dp"
+        android:layout_marginEnd="52dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical">
+
+        <!--Row 1-->
+        <LinearLayout
+            android:id="@+id/medicalRecordsLayoutRow1"
+            android:layout_width="310dp"
+            android:layout_height="145dp"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp">
+            <!--Medical Record 1-->
+            <LinearLayout
+                android:id="@+id/medicalRecord1"
+                android:layout_width="145dp"
+                android:layout_height="145dp"
+                android:background="@drawable/white_square_rounded"
+                android:layout_marginRight="20dp">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="145dp"
+                    android:layout_height="145dp">
+
+                    <Button
+                        android:id="@+id/dots1"
+                        android:layout_width="25dp"
+                        android:layout_height="13dp"
+                        android:backgroundTint="#FFFFFF"
+                        android:foreground="@drawable/threedots"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp" />
+
+                    <ImageView
+                        android:id="@+id/folder1"
+                        android:layout_width="59dp"
+                        android:layout_height="47dp"
+                        android:src="@drawable/folder"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginEnd="43dp" />
+
+                    <TextView
+                        android:id="@+id/MRtext1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans_bold"
+                        android:text="Medical Record 1"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/folder1"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginEnd="20dp" />
+
+                    <TextView
+                        android:id="@+id/sizeText1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:text="50 MB"
+                        android:textColor="#7A7878"
+                        android:textSize="11sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/MRtext1"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginEnd="58dp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+            <!--Medical Record 2-->
+            <LinearLayout
+                android:id="@+id/medicalRecord2"
+                android:layout_width="145dp"
+                android:layout_height="145dp"
+                android:background="@drawable/white_square_rounded">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="145dp"
+                    android:layout_height="145dp">
+
+                    <Button
+                        android:id="@+id/dots2"
+                        android:layout_width="25dp"
+                        android:layout_height="13dp"
+                        android:backgroundTint="#FFFFFF"
+                        android:foreground="@drawable/threedots"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp" />
+
+                    <ImageView
+                        android:id="@+id/folder2"
+                        android:layout_width="59dp"
+                        android:layout_height="47dp"
+                        android:src="@drawable/folder"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginEnd="43dp" />
+
+                    <TextView
+                        android:id="@+id/MRtext2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans_bold"
+                        android:text="Medical Record 2"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/folder2"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginEnd="20dp" />
+
+                    <TextView
+                        android:id="@+id/sizeText2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:text="90 MB"
+                        android:textColor="#7A7878"
+                        android:textSize="11sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/MRtext2"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginEnd="58dp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!--Row 2-->
+        <LinearLayout
+            android:id="@+id/medicalRecordsLayoutRow2"
+            android:layout_width="310dp"
+            android:layout_height="145dp"
+            android:orientation="horizontal">
+            <!--Medical Record 3-->
+            <LinearLayout
+                android:id="@+id/medicalRecord3"
+                android:layout_width="145dp"
+                android:layout_height="145dp"
+                android:background="@drawable/white_square_rounded"
+                android:layout_marginRight="20dp">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="145dp"
+                    android:layout_height="145dp">
+                    <Button
+                        android:id="@+id/dots3"
+                        android:layout_width="25dp"
+                        android:layout_height="13dp"
+                        android:backgroundTint="#FFFFFF"
+                        android:foreground="@drawable/threedots"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp" />
+
+                    <ImageView
+                        android:id="@+id/folder3"
+                        android:layout_width="59dp"
+                        android:layout_height="47dp"
+                        android:src="@drawable/folder"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginEnd="43dp" />
+
+                    <TextView
+                        android:id="@+id/MRtext3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans_bold"
+                        android:text="Medical Record 3"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/folder3"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginEnd="20dp" />
+
+                    <TextView
+                        android:id="@+id/sizeText3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:text="40 MB"
+                        android:textColor="#7A7878"
+                        android:textSize="11sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/MRtext3"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginEnd="58dp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+            <!--Medical Record 4-->
+            <LinearLayout
+                android:id="@+id/medicalRecord4"
+                android:layout_width="145dp"
+                android:layout_height="145dp"
+                android:background="@drawable/white_square_rounded">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="145dp"
+                    android:layout_height="145dp">
+                    <Button
+                        android:id="@+id/dots4"
+                        android:layout_width="25dp"
+                        android:layout_height="13dp"
+                        android:backgroundTint="#FFFFFF"
+                        android:foreground="@drawable/threedots"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp" />
+
+                    <ImageView
+                        android:id="@+id/folder4"
+                        android:layout_width="59dp"
+                        android:layout_height="47dp"
+                        android:src="@drawable/folder"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginEnd="43dp" />
+
+                    <TextView
+                        android:id="@+id/MRtext4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans_bold"
+                        android:text="Medical Record 4"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/folder4"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginEnd="20dp" />
+
+                    <TextView
+                        android:id="@+id/sizeText4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:text="63 MB"
+                        android:textColor="#7A7878"
+                        android:textSize="11sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/MRtext4"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginEnd="58dp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

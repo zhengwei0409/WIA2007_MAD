@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/frameLayout5"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InfoDangueFever">
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="328dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="52dp"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="Symptoms and Treatment of Dengue Fever"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/open_sans_light"
+        android:text="Mon, 18/11/2024 by"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title" />
+
+    <TextView
+        android:id="@+id/MrKwameName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="  Mr Kwame"
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@+id/Date"
+        app:layout_constraintTop_toBottomOf="@+id/Title" />
+
+    <ImageView
+        android:id="@+id/MrKwame2"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/mrkwame"
+        app:layout_constraintStart_toEndOf="@+id/MrKwameName"
+        app:layout_constraintTop_toBottomOf="@+id/Title" />
+
+    <ImageView
+        android:id="@+id/CovidRounded"
+        android:layout_width="352dp"
+        android:layout_height="196dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="28dp"
+        android:src="@drawable/mosquito_info"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MrKwame2" />
+
+    <TextView
+        android:id="@+id/part1"
+        android:layout_width="338dp"
+        android:layout_height="190dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="36dp"
+        android:fontFamily="@font/open_sans_medium"
+        android:text="Dengue is caused by a virus that is mostly transmitted by the bite of female mosquitoes of the species Aedes aegypti. Dengue symptoms range from none to serious flu-like symptoms. A small proportion of people develop severe dengue, which can be fatal. Dengue is the most widely distributed mosquito-borne viral disease in the world. It continues to spread rapidly because of climate change, rapid urbanization, and population growth. Outbreaks are usually seasonal, peaking during and after rainy seasons. The World Health Organization classifies dengue as one of the top ten threats to public health."
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CovidRounded" />
+
+    <TextView
+        android:id="@+id/part2"
+        android:layout_width="136dp"
+        android:layout_height="257dp"
+        android:layout_marginStart="36dp"
+        android:fontFamily="@font/open_sans_medium"
+        android:text="Dengue can have no symptoms or cause only mild illness, but it can also cause flu-like symptoms such as: high fever (40°C/104°F), severe headache, pain behind the eyes, nausea, vomiting, swollen glands, rash, muscle, joint, or bone pains so severe that dengue is sometimes referred to as ‘breakbone fever’."
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/part1" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="197dp"
+        android:layout_height="265dp"
+        android:layout_marginEnd="36dp"
+        android:src="@drawable/denguefever"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/part1" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

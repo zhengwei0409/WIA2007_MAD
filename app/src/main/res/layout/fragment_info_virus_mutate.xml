@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/frameLayout7"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InfoVirusMutate">
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="344dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="32dp"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="How the Virus Mutates and Impacts Global Health"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/open_sans_light"
+        android:text="Wed, 15/05/2024 by"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title" />
+
+    <TextView
+        android:id="@+id/MrsSofia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="  Mrs Sofia"
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@+id/Date"
+        app:layout_constraintTop_toBottomOf="@+id/Title" />
+
+    <ImageView
+        android:id="@+id/MrsSofiaImg"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="208dp"
+        android:src="@drawable/mrssofia"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title" />
+
+    <ImageView
+        android:id="@+id/SneezeRounded"
+        android:layout_width="361dp"
+        android:layout_height="205dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="24dp"
+        android:src="@drawable/sneezerounded"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/part1"
+        android:layout_width="340dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="324dp"
+        android:layout_marginEnd="36dp"
+        android:fontFamily="@font/open_sans_medium"
+        android:text="Viruses are microorganisms of genetic material that are dependent on living organisms as hosts. Once they infect, or take over, a host, they hijack the host cell to reproduce. Viruses have some of the features of a living entity in that they can reproduce and mutate. However, they can’t move on their own or survive outside of a host body. "
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/MutateRounded"
+        android:layout_width="361dp"
+        android:layout_height="205dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="24dp"
+        android:src="@drawable/mutaterounded"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/part1" />
+
+    <TextView
+        android:id="@+id/part2"
+        android:layout_width="350dp"
+        android:layout_height="199dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="28dp"
+        android:fontFamily="@font/open_sans_medium"
+        android:text="Mutations can be a death sentence for a virus, causing it to evolve itself out of existence. So, why do viruses mutate considering that the process leads to a dead end?
+
+Mutation is a natural process for survival. By becoming more effective in moving from host to host and reproducing faster, a virus can extend its life. Other natural reasons for mutation include becoming more effective in adhering to host surfaces, such as the spike protein of COVID-19. Mutation also helps viruses to evade immune responses and vaccines.
+
+Sometimes viruses mutate as they make copies of themselves. Sometimes reproduction causes errors, and a gene reproduces incorrectly."
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MutateRounded" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

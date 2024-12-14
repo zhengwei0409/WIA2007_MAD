@@ -1,0 +1,126 @@
+{
+  "project_info": {
+    "project_number": "684230830753",
+    "project_id": "medconnect-d88bd",
+    "storage_bucket": "medconnect-d88bd.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:684230830753:android:4f89356833752d819e1ee0",
+        "android_client_info": {
+          "package_name": "com.example.appointmentpage2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "684230830753-v9r58f2he8arhhser1e8prj0hdqk7009.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAI-shIrwoIpZ-pY9D7QnFgu4HQ_5dF2JQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "684230830753-v9r58f2he8arhhser1e8prj0hdqk7009.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:684230830753:android:5ec7fa57b2add86a9e1ee0",
+        "android_client_info": {
+          "package_name": "com.example.automatedchatreply"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "684230830753-v9r58f2he8arhhser1e8prj0hdqk7009.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAI-shIrwoIpZ-pY9D7QnFgu4HQ_5dF2JQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "684230830753-v9r58f2he8arhhser1e8prj0hdqk7009.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:684230830753:android:c38b4d4a849fc0a29e1ee0",
+        "android_client_info": {
+          "package_name": "com.example.madpart1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "684230830753-v9r58f2he8arhhser1e8prj0hdqk7009.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAI-shIrwoIpZ-pY9D7QnFgu4HQ_5dF2JQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "684230830753-v9r58f2he8arhhser1e8prj0hdqk7009.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:684230830753:android:2dd9d38ccb77290d9e1ee0",
+        "android_client_info": {
+          "package_name": "com.example.medconnect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "684230830753-v9r58f2he8arhhser1e8prj0hdqk7009.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAI-shIrwoIpZ-pY9D7QnFgu4HQ_5dF2JQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "684230830753-v9r58f2he8arhhser1e8prj0hdqk7009.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

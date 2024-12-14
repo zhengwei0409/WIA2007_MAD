@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout
+
+    android:id="@+id/frameLayout3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InfoCovidPage">
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="344dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="56dp"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="Covid variant discovered and the latest policy is published"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="116dp"
+        android:fontFamily="@font/open_sans_light"
+        android:text="Sun, 01/12/2024 by"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/MrsElena"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="116dp"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="  Mrs Elena"
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@+id/Date"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/MrsElenaImg2"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginEnd="205dp"
+        android:src="@drawable/mrselena"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/CovidRounded"
+        android:layout_width="361dp"
+        android:layout_height="205dp"
+        android:layout_marginTop="144dp"
+        android:layout_marginEnd="24dp"
+        android:src="@drawable/covidrounded"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/part1"
+        android:layout_width="338dp"
+        android:layout_height="147dp"
+        android:layout_marginTop="360dp"
+        android:layout_marginEnd="36dp"
+        android:fontFamily="@font/open_sans_medium"
+        android:text="A new COVID-19 variant, XEC, has been gaining attention as it continues to spread in the United States. XEC is a hybrid variant formed through recombination of two JN.1 sublineages. Alongside XEC, variants like KP.3.1.1 (currently dominant) and MC.1 are also circulating. These variants are part of ongoing changes to the virus, primarily due to mutations and recombination. Such changes enable the virus to evade immunity, although current vaccines remain effective against severe illness caused by these strains."
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/mask"
+        android:layout_width="365dp"
+        android:layout_height="207dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/maskrounded"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/part1" />
+
+    <TextView
+        android:id="@+id/part2"
+        android:layout_width="340dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="36dp"
+        android:fontFamily="@font/open_sans_medium"
+        android:text="Globally, many countries are adapting policies in response to the evolving situation. In the U.S., the CDC continues to monitor variant trends and vaccine efficacy while advocating for preventive measures to reduce severe cases and hospitalizations."
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mask" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
