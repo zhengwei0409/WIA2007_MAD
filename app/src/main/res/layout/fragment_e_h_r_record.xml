@@ -32,17 +32,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="49dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="312dp"
-        android:layout_marginTop="195dp"
-        android:backgroundTint="#C8C8CC"
-        android:foreground="@drawable/fileicon"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/TitleRF"
         android:layout_width="wrap_content"
@@ -84,17 +73,6 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="145dp"
                     android:layout_height="145dp">
-
-                    <Button
-                        android:id="@+id/dots1"
-                        android:layout_width="25dp"
-                        android:layout_height="13dp"
-                        android:backgroundTint="#FFFFFF"
-                        android:foreground="@drawable/threedots"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="8dp" />
 
                     <ImageView
                         android:id="@+id/folder1"
@@ -142,17 +120,6 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="145dp"
                     android:layout_height="145dp">
-
-                    <Button
-                        android:id="@+id/dots2"
-                        android:layout_width="25dp"
-                        android:layout_height="13dp"
-                        android:backgroundTint="#FFFFFF"
-                        android:foreground="@drawable/threedots"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="8dp" />
 
                     <ImageView
                         android:id="@+id/folder2"
@@ -208,16 +175,6 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="145dp"
                     android:layout_height="145dp">
-                    <Button
-                        android:id="@+id/dots3"
-                        android:layout_width="25dp"
-                        android:layout_height="13dp"
-                        android:backgroundTint="#FFFFFF"
-                        android:foreground="@drawable/threedots"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="8dp" />
 
                     <ImageView
                         android:id="@+id/folder3"
@@ -265,16 +222,6 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="145dp"
                     android:layout_height="145dp">
-                    <Button
-                        android:id="@+id/dots4"
-                        android:layout_width="25dp"
-                        android:layout_height="13dp"
-                        android:backgroundTint="#FFFFFF"
-                        android:foreground="@drawable/threedots"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="8dp" />
 
                     <ImageView
                         android:id="@+id/folder4"
