@@ -72,6 +72,7 @@ public class MainPage extends Fragment {
     private ImageButton thirdDoctorButton;
     private Button seeAllButton;
     private ConstraintLayout findDoctorButton;
+    private ConstraintLayout findHostpitalBtn;
     private TextView doctorName1;
     private TextView doctorName2;
     private TextView doctorName3;
@@ -99,6 +100,7 @@ public class MainPage extends Fragment {
         seeAllButton = view.findViewById(R.id.doctor_list_btn);
 
         findDoctorButton = view.findViewById(R.id.doctor_btn);
+        findHostpitalBtn = view.findViewById(R.id.hospital_btn);
 
         doctorName1 = view.findViewById(R.id.dr_name);
         doctorName2 = view.findViewById(R.id.dr_name2);
@@ -126,6 +128,14 @@ public class MainPage extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), AllDoctor.class);
+                startActivity(intent);
+            }
+        });
+
+        findHostpitalBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), HospitalPage.class);
                 startActivity(intent);
             }
         });

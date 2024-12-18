@@ -30,6 +30,7 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="12dp"
         android:fontFamily="@font/open_sans_light"
+        android:textStyle="bold"
         android:text="Tue, 07/01/2025 by"
         android:textSize="10sp"
         app:layout_constraintStart_toStartOf="parent"

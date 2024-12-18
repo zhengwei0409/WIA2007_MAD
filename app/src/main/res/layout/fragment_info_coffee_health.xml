@@ -34,6 +34,7 @@
         android:layout_marginTop="116dp"
         android:fontFamily="@font/open_sans_light"
         android:text="Sun, 25/12/2024 by"
+        android:textStyle="bold"
         android:textSize="10sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
