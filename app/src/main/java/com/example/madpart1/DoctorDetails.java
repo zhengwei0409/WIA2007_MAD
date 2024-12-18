@@ -1,11 +1,16 @@
 package com.example.madpart1;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,9 +31,13 @@ import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Pattern;
 
 public class DoctorDetails extends AppCompatActivity {
 
+    private ImageView backImageView;
     private TextView doctorNameTextView;
     private TextView doctorSpecialtyTextView;
     private TextView ratingsTextView;
@@ -39,6 +48,11 @@ public class DoctorDetails extends AppCompatActivity {
     private TextView demographyContentTextView;
     private ImageView doctorImageView; // Added: ImageView for displaying doctor image
     private FrameLayout loadingPage;
+    private EditText dateEditText; // Added: EditText for the appointment date
+    private Spinner timeSpinner;  // Added: Spinner for selecting the appointment time
+    private Button bookNowButton; // Added: Button for booking the appointment
+
+    private String doctorName; // Used dynamically for Firestore and display
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +65,13 @@ public class DoctorDetails extends AppCompatActivity {
             return insets;
         });
 
-        loadingPage = findViewById(R.id.loading_overlay);
-        loadingPage.setVisibility(View.VISIBLE);
+//        loadingPage = findViewById(R.id.loading_overlay);
+//        loadingPage.setVisibility(View.VISIBLE);
 
         String doctorUID = getIntent().getStringExtra("doctorUID");
 
+
+        backImageView = findViewById(R.id.IVBack);
         doctorNameTextView = findViewById(R.id.doctorNameTextView);
         doctorSpecialtyTextView = findViewById(R.id.doctorSpecialtyTextView);
         ratingsTextView = findViewById(R.id.ratingsTextView);
@@ -65,11 +81,22 @@ public class DoctorDetails extends AppCompatActivity {
         experienceTextView = findViewById(R.id.experienceTextView);
         demographyContentTextView = findViewById(R.id.demographyContentsTextView);
         doctorImageView = findViewById(R.id.doctorImage); // Added: Initialize the ImageView
+        dateEditText = findViewById(R.id.dateEditText); // Added: Initialize EditText
+        timeSpinner = findViewById(R.id.timeSpinner);   // Added: Initialize Spinner
+        bookNowButton = findViewById(R.id.bookNowButton); // Added: Initialize Button
+
+        backImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
 
         FirebaseFirestore.getInstance().collection("Doctors").document(doctorUID).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                String doctorName = documentSnapshot.getString("name");
+                doctorName = documentSnapshot.getString("name"); // Updated: Store doctor name
                 String department = documentSnapshot.getString("department");
                 Double ratings = documentSnapshot.getDouble("ratings");
                 long reviews = documentSnapshot.getLong("numberOfRatingsReceived");
@@ -88,6 +115,14 @@ public class DoctorDetails extends AppCompatActivity {
 
                 // Fetch and display the doctor's image
                 fetchDoctorImage(doctorName); // Added: Call method to fetch the image
+            }
+        });
+
+        // Added: Set OnClickListener for bookNowButton
+        bookNowButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                handleBookNow();
             }
         });
 
@@ -110,8 +145,6 @@ public class DoctorDetails extends AppCompatActivity {
                 public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                     Bitmap bitmap = BitmapFactory.decodeFile(files.getAbsolutePath());
                     doctorImageView.setImageBitmap(bitmap);
-
-                    loadingPage.setVisibility(View.GONE);
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -123,5 +156,40 @@ public class DoctorDetails extends AppCompatActivity {
         } catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    // Added: Method to handle the booking logic
+    private void handleBookNow() {
+        String dateInput = dateEditText.getText().toString().trim();
+        String selectedTime = timeSpinner.getSelectedItem().toString();
+
+        // Validate date format (YYYY-MM-DD)
+        if (!isValidDate(dateInput)) {
+            Toast.makeText(this, "Please enter the date in YYYY-MM-DD format.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Add appointment to Firestore
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Map<String, Object> appointmentData = new HashMap<>();
+        appointmentData.put("date", dateInput);
+        appointmentData.put("time", selectedTime);
+        appointmentData.put("doctorAssigned", doctorName); // Using doctorName dynamically
+        appointmentData.put("status", "UpComing");
+
+        db.collection("Appointments")
+                .add(appointmentData)
+                .addOnSuccessListener(documentReference -> {
+                    Toast.makeText(DoctorDetails.this, "Appointment booked successfully!", Toast.LENGTH_SHORT).show();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(DoctorDetails.this, "Error booking appointment: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
+    }
+
+    // Added: Method to validate date format
+    private boolean isValidDate(String date) {
+        String datePattern = "^(\\d{4})-(\\d{2})-(\\d{2})$";
+        return !TextUtils.isEmpty(date) && Pattern.matches(datePattern, date);
     }
 }

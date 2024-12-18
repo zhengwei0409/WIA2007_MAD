@@ -53,7 +53,7 @@ public class AllDoctor extends AppCompatActivity {
                             String doctorUID = queryDocumentSnapshots.getDocuments().get(0).getId();
 
                             // Start MainActivity with the doctorUID
-                            Intent intent = new Intent(AllDoctor.this, MainActivity.class);
+                            Intent intent = new Intent(AllDoctor.this, DoctorDetails.class);
                             intent.putExtra("doctorUID", doctorUID);
                             startActivity(intent);
                         } else {
