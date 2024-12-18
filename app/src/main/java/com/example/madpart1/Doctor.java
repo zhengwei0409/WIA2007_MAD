@@ -3,7 +3,7 @@ package com.example.madpart1;
 public class Doctor {
     private String name;
     private String department;
-    private String loginStatus; // Change from boolean available to String loginStatus
+    private String loginStatus;
 
     // Default constructor (required for Firestore)
     public Doctor() {}
@@ -20,8 +20,8 @@ public class Doctor {
     public void setName(String name) { this.name = name; }
 
     public String getDepartment() { return department; }
-    public void setSpecialty(String specialty) { this.department = specialty; }
+    public void setDepartment(String department) { this.department = department; }
 
-    public String getLoginStatus() { return loginStatus; }  // Getter for loginStatus
-    public void setLoginStatus(String loginStatus) { this.loginStatus = loginStatus; }  // Setter for loginStatus
+    public String getLoginStatus() { return loginStatus; }
+    public void setLoginStatus(String loginStatus) { this.loginStatus = loginStatus; }
 }
