@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
@@ -28,24 +30,46 @@ public class AllDoctor extends AppCompatActivity {
     private RecyclerView recyclerView;
     private DoctorAdapter doctorAdapter;
     private List<Doctor> doctorList;
+    private ImageView backArrow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_all_doctor);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
         // Initialize RecyclerView and list
         recyclerView = findViewById(R.id.recyclerViewDoctors);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         doctorList = new ArrayList<>();
-        doctorAdapter = new DoctorAdapter(doctorList);
+
+        // Initialize the adapter with an OnItemClickListener
+        doctorAdapter = new DoctorAdapter(doctorName -> {
+            // Fetch the doctorUID from Firestore using doctorName
+            FirebaseFirestore.getInstance().collection("Doctors")
+                    .whereEqualTo("name", doctorName)
+                    .get()
+                    .addOnSuccessListener(queryDocumentSnapshots -> {
+                        if (!queryDocumentSnapshots.isEmpty()) {
+                            String doctorUID = queryDocumentSnapshots.getDocuments().get(0).getId();
+
+                            // Start MainActivity with the doctorUID
+                            Intent intent = new Intent(AllDoctor.this, MainActivity.class);
+                            intent.putExtra("doctorUID", doctorUID);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(AllDoctor.this, "Doctor not found!", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(e -> Toast.makeText(AllDoctor.this, "Error fetching doctorUID: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+        });
+
         recyclerView.setAdapter(doctorAdapter);
+
+        // Back arrow functionality
+        backArrow = findViewById(R.id.back_arrow);
+        backArrow.setOnClickListener(v -> {
+            finish();
+        });
 
         // Fetch data from Firestore
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -54,7 +78,6 @@ public class AllDoctor extends AppCompatActivity {
             public void onEvent(@Nullable QuerySnapshot snapshots, @Nullable FirebaseFirestoreException e) {
                 if (e != null) {
                     // Handle the error
-                    Log.w("Firestore Error", "Listen failed.", e);
                     return;
                 }
 
@@ -70,18 +93,9 @@ public class AllDoctor extends AppCompatActivity {
                         Doctor doctor = new Doctor(name, department, loginStatus);
                         doctorList.add(doctor); // Add doctor to list
                     }
-                    doctorAdapter.notifyDataSetChanged(); // Notify adapter of changes
+                    doctorAdapter.submitList(doctorList); // Update adapter with new list
                 }
             }
         });
-
-        ImageButton imageButton = findViewById(R.id.doctor_back_btn);
-
-        // Set an OnClickListener
-        imageButton.setOnClickListener(v -> {
-            // Close the current activity
-            finish();
-        });
-
     }
 }

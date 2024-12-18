@@ -7,55 +7,78 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorViewHolder> {
-    private List<Doctor> doctorList;
+public class DoctorAdapter extends ListAdapter<Doctor, DoctorAdapter.DoctorViewHolder> {
 
-    public DoctorAdapter(List<Doctor> doctorList) {
-        this.doctorList = doctorList;
+    private OnItemClickListener listener;
+
+    // Interface for handling clicks
+    public interface OnItemClickListener {
+        void onItemClick(String doctorName);
     }
+
+    public DoctorAdapter(OnItemClickListener listener) {
+        super(DIFF_CALLBACK);
+        this.listener = listener;
+    }
+
+    private static final DiffUtil.ItemCallback<Doctor> DIFF_CALLBACK = new DiffUtil.ItemCallback<Doctor>() {
+        @Override
+        public boolean areItemsTheSame(@NonNull Doctor oldItem, @NonNull Doctor newItem) {
+            return oldItem.getName().equals(newItem.getName());  // Use doctor's name for uniqueness
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull Doctor oldItem, @NonNull Doctor newItem) {
+            return oldItem.equals(newItem);  // Compare the entire object
+        }
+    };
 
     @NonNull
     @Override
     public DoctorViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // Inflate the doctor item layout
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_doctor_layout, parent, false);
         return new DoctorViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull DoctorViewHolder holder, int position) {
-        Doctor doctor = doctorList.get(position);
+        Doctor doctor = getItem(position);
         holder.name.setText(doctor.getName());
         holder.department.setText(doctor.getDepartment());
 
         // Set login status text and color based on loginStatus
-        String loginStatus = doctor.getLoginStatus();  // assuming loginStatus is a String (online/offline)
-        holder.loginStatus.setText("Status: " + loginStatus);  // Display status
+        String loginStatus = doctor.getLoginStatus();
+        holder.loginStatus.setText("Status: " + loginStatus);
 
-        // Set the color based on login status
         if ("online".equalsIgnoreCase(loginStatus)) {
-            holder.loginStatus.setTextColor(Color.GREEN);  // You can set any color for online status
+            holder.loginStatus.setTextColor(Color.GREEN);
         } else {
-            holder.loginStatus.setTextColor(Color.RED);    // You can set any color for offline status
+            holder.loginStatus.setTextColor(Color.RED);
         }
+
+        holder.itemView.setOnClickListener(v -> listener.onItemClick(doctor.getName()));
     }
 
     @Override
     public int getItemCount() {
-        return doctorList.size();
+        return getCurrentList().size();  // This will return the list size
     }
 
     public static class DoctorViewHolder extends RecyclerView.ViewHolder {
-        TextView name, department, loginStatus;  // Change availability to loginStatus
+        TextView name, department, loginStatus;
 
         public DoctorViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.textViewDoctorName);
             department = itemView.findViewById(R.id.textViewDoctorDepartment);
-            loginStatus = itemView.findViewById(R.id.textViewDoctorLoginStatus);  // Bind loginStatus
+            loginStatus = itemView.findViewById(R.id.textViewDoctorLoginStatus);
         }
     }
 }
