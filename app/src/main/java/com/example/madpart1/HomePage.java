@@ -80,6 +80,14 @@ public class HomePage extends Fragment {
             startActivity(intent);
         });
 
+        ImageButton btnAppointment = view.findViewById(R.id.btnAppointment);
+
+        btnAppointment.setOnClickListener(v -> {
+            // Start a new activity using an Intent
+            Intent intent = new Intent(getActivity(), AppointmentPage.class);
+            startActivity(intent);
+        });
+
         return view;
     }
 }

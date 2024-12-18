@@ -74,12 +74,14 @@
             />
 
         <ImageButton
+            android:id="@+id/btnAppointment"
             android:layout_width="42dp"
             android:layout_height="32dp"
             android:layout_marginEnd="5dp"
             android:src="@drawable/arrow_icon"
             android:background="@android:color/transparent"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:clickable="true"/>
 
     </RelativeLayout>
 
