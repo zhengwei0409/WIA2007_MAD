@@ -12,20 +12,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-<!--        <ImageView-->
-<!--            android:id="@+id/back_arrow"-->
-<!--            android:layout_width="43dp"-->
-<!--            android:layout_height="41dp"-->
-<!--            android:layout_gravity="center_vertical"-->
-<!--            android:clickable="true"-->
-<!--            android:contentDescription="@string/back_arrow"-->
-<!--            android:focusable="true"-->
-<!--            android:padding="8dp"-->
-<!--            android:translationX="20dp"-->
-<!--            android:translationY="8dp"-->
-<!--            android:src="@drawable/ic_back"-->
-<!--            app:layout_anchor="@+id/back_arrow"-->
-<!--            app:layout_anchorGravity="center" />-->
+        <ImageView
+            android:id="@+id/back_arrow"
+            android:layout_width="43dp"
+            android:layout_height="41dp"
+            android:layout_gravity="center_vertical"
+            android:clickable="true"
+            android:contentDescription="@string/back_arrow"
+            android:focusable="true"
+            android:padding="8dp"
+            android:translationX="20dp"
+            android:translationY="8dp"
+            android:src="@drawable/ic_back"
+            app:layout_anchor="@+id/back_arrow"
+            app:layout_anchorGravity="center" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <!-- Main Title -->
@@ -71,5 +71,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/toggleSection" />
+
+    <FrameLayout
+        android:id="@+id/loading_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FCF5FD"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:indeterminateTint="#4768C9" />
+    </FrameLayout>
 
 </RelativeLayout>

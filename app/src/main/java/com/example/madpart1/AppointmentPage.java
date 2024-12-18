@@ -2,6 +2,8 @@ package com.example.madpart1;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
@@ -13,17 +15,20 @@ import androidx.fragment.app.Fragment;
 
 public class AppointmentPage extends AppCompatActivity {
 
+    private View loadingOverlay;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appointment_page);
 
+        loadingOverlay = findViewById(R.id.loading_overlay);
+
         // FloatingActionButton click listener
-//        ImageView fabBack = findViewById(R.id.back_arrow);
-//        fabBack.setOnClickListener(v -> {
-//            Intent intent = new Intent(AppointmentPage.this, HomePage.class); // Replace with your target page
-//            startActivity(intent);
-//        });
+        ImageView fabBack = findViewById(R.id.back_arrow);
+        fabBack.setOnClickListener(v -> {
+            finish();
+        });
 
 
         // Toggle buttons for Upcoming and Finished
@@ -44,5 +49,17 @@ public class AppointmentPage extends AppCompatActivity {
                 .beginTransaction()
                 .replace(R.id.fragmentContainer, fragment)
                 .commit();
+    }
+
+    public void showLoadingOverlay() {
+        if (loadingOverlay != null) {
+            loadingOverlay.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public void hideLoadingOverlay() {
+        if (loadingOverlay != null) {
+            loadingOverlay.setVisibility(View.GONE);
+        }
     }
 }
