@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AppointmentPage">
+
+    <!-- Floating Action Button -->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+<!--        <ImageView-->
+<!--            android:id="@+id/back_arrow"-->
+<!--            android:layout_width="43dp"-->
+<!--            android:layout_height="41dp"-->
+<!--            android:layout_gravity="center_vertical"-->
+<!--            android:clickable="true"-->
+<!--            android:contentDescription="@string/back_arrow"-->
+<!--            android:focusable="true"-->
+<!--            android:padding="8dp"-->
+<!--            android:translationX="20dp"-->
+<!--            android:translationY="8dp"-->
+<!--            android:src="@drawable/ic_back"-->
+<!--            app:layout_anchor="@+id/back_arrow"-->
+<!--            app:layout_anchorGravity="center" />-->
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <!-- Main Title -->
+    <TextView
+        android:id="@+id/tvMainTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Appointment Page"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp" />
+
+    <!-- Upcoming and Finished Buttons -->
+    <LinearLayout
+        android:id="@+id/toggleSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvMainTitle"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
+
+        <Button
+            android:id="@+id/btnUpcoming"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Upcoming"
+            android:backgroundTint="@color/dark_blue" />
+
+        <Button
+            android:id="@+id/btnFinished"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Finished"
+            android:backgroundTint="@color/light_blue" />
+    </LinearLayout>
+
+    <!-- Fragment Container View -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toggleSection" />
+
+</RelativeLayout>
