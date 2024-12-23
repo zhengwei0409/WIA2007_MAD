@@ -121,6 +121,7 @@ public class HomePage extends Fragment {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         db.collection("Appointments")
+                .whereEqualTo("status", "UpComing") // Filter only Upcoming appointments
                 .limit(2) // Fetch the first 2 documents
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
@@ -132,7 +133,7 @@ public class HomePage extends Fragment {
                         }
                         appointmentAdapter.notifyDataSetChanged(); // Notify adapter about the updated list
                     } else {
-                        Toast.makeText(getContext(), "No appointments found.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "No upcoming appointments found.", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(e -> {
@@ -140,5 +141,6 @@ public class HomePage extends Fragment {
                     Toast.makeText(getContext(), "Failed to load appointments.", Toast.LENGTH_SHORT).show();
                 });
     }
+
 
 }
