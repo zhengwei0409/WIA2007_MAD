@@ -4,11 +4,22 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Toast;
+
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -57,6 +68,10 @@ public class HomePage extends Fragment {
         }
     }
 
+    private RecyclerView appointmentRecyclerView;
+    private AppointmentAdapter appointmentAdapter;
+    private List<Appointment> appointmentList;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -88,6 +103,42 @@ public class HomePage extends Fragment {
             startActivity(intent);
         });
 
+        appointmentRecyclerView = view.findViewById(R.id.appointmentRecyclerView);
+        appointmentRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        // Initialize Appointment List and Adapter
+        appointmentList = new ArrayList<>();
+        appointmentAdapter = new AppointmentAdapter(getContext(), appointmentList);
+        appointmentRecyclerView.setAdapter(appointmentAdapter);
+
+        // Load Appointments from Firestore
+        loadAppointments();
+
         return view;
     }
+
+    private void loadAppointments() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        db.collection("Appointments")
+                .limit(2) // Fetch the first 2 documents
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    if (!queryDocumentSnapshots.isEmpty()) {
+                        appointmentList.clear(); // Clear the current list to avoid duplicates
+                        for (DocumentSnapshot document : queryDocumentSnapshots) {
+                            Appointment appointment = document.toObject(Appointment.class);
+                            appointmentList.add(appointment);
+                        }
+                        appointmentAdapter.notifyDataSetChanged(); // Notify adapter about the updated list
+                    } else {
+                        Toast.makeText(getContext(), "No appointments found.", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("Firestore Error", e.getMessage(), e);
+                    Toast.makeText(getContext(), "Failed to load appointments.", Toast.LENGTH_SHORT).show();
+                });
+    }
+
 }
