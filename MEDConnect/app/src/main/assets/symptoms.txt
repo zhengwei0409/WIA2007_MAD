@@ -1,0 +1,10 @@
+Fever
+Cough
+Headache
+Shortness of breath
+Fatigue
+Nausea
+Dizziness
+Sore throat
+Loss of taste or smell
+Body aches
