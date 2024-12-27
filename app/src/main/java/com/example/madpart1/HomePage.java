@@ -12,8 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -32,6 +35,13 @@ public class HomePage extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    TextView nameHomePage, meetingID;
+    private FirebaseFirestore db;
+    FirebaseUser user;
+    String userID;
+    FirebaseAuth mAuth;
+    ImageButton meetNow, userButton;
+    private static final String TAG = "ProfilePage";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -75,11 +85,63 @@ public class HomePage extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+        user = mAuth.getCurrentUser();
+        userID = user.getUid();
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_home_page, container, false);
 
+        meetingID = view.findViewById(R.id.mID);
+        db.collection("users").document(userID).get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        // Read the "Meeting ID" field
+                        String meetingIDdb = documentSnapshot.getString("Meeting ID");
+                        if (meetingID != null)
+                            meetingID.setText(meetingIDdb);
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    // Handle errors
+                });
+
+        nameHomePage = view.findViewById(R.id.homePageName);
+
+        db.collection("users").document(userID).get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        UserDetails userDetails = documentSnapshot.toObject(UserDetails.class);
+                        if (userDetails != null) {
+                            String fullName = userDetails.getFullName();
+                            nameHomePage.setText(fullName.substring(0,fullName.indexOf(" ")));
+                        }
+                    } else {
+                        Log.d(TAG, "No such document exists.");
+                    }
+                })
+                .addOnFailureListener(e -> Log.e(TAG, "Error fetching document", e));
+
         // Find the ImageButton by ID
         ImageButton notificationBtn = view.findViewById(R.id.notification);
+
+        meetNow = view.findViewById(R.id.MeetingNowButton);
+
+        meetNow.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), JoinActivity.class);
+            startActivity(intent);
+        });
+
+
+        userButton = view.findViewById(R.id.user_btn);
+        userButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AllUsers.class);
+                startActivity(intent);
+            }
+        });
 
         // Set an OnClickListener
         notificationBtn.setOnClickListener(v -> {

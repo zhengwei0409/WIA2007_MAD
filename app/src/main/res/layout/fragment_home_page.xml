@@ -16,12 +16,14 @@
         android:layout_marginTop="10dp">
 
         <ImageButton
+            android:id="@+id/profile_pic"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:id="@+id/profile_pic"
             android:layout_marginRight="25dp"
-            android:background="@drawable/circle_bg"
-            />
+            android:background="@drawable/circular_background"
+            android:src="@drawable/profile"
+            android:scaleType="centerCrop" />
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -35,6 +37,7 @@
             />
 
         <TextView
+            android:id="@+id/homePageName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Ming"
@@ -62,7 +65,7 @@
         android:layout_below="@+id/welcome_bar"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="5dp"
         android:id="@+id/appointment_text">
 
         <TextView
@@ -85,200 +88,6 @@
 
     </RelativeLayout>
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@+id/appointment_text"-->
-<!--        android:id="@+id/appointment_widget"-->
-<!--        android:layout_marginStart="20dp"-->
-<!--        android:layout_marginEnd="20dp"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:orientation="vertical">-->
-
-<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content">-->
-
-<!--            &lt;!&ndash; Background Button &ndash;&gt;-->
-<!--            <ImageButton-->
-<!--                android:layout_width="360dp"-->
-<!--                android:layout_height="100dp"-->
-<!--                android:id="@+id/appt_btn1"-->
-<!--                android:background="@drawable/rounded_bg"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent" />-->
-
-<!--            &lt;!&ndash; Circular Image &ndash;&gt;-->
-<!--            <ImageView-->
-<!--                android:layout_width="50dp"-->
-<!--                android:layout_height="50dp"-->
-<!--                android:background="@drawable/circle_bg"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                android:layout_marginEnd="35dp"-->
-<!--                android:layout_marginTop="25dp" />-->
-
-<!--            &lt;!&ndash; Doctor Name &ndash;&gt;-->
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="doctor name"-->
-<!--                android:textColor="@color/white"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                android:layout_marginTop="75dp"-->
-<!--                android:layout_marginEnd="20dp"/>-->
-
-<!--            &lt;!&ndash; Vertical Divider &ndash;&gt;-->
-<!--            <ImageView-->
-<!--                android:layout_width="5dp"-->
-<!--                android:layout_height="65dp"-->
-<!--                android:id="@+id/rv"-->
-<!--                android:src="@drawable/rounded_vertical"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="@id/appt_btn1"-->
-<!--                android:layout_marginStart="20dp"-->
-<!--                android:layout_marginTop="25dp" />-->
-
-<!--            &lt;!&ndash; Date and Time &ndash;&gt;-->
-<!--            <TextView-->
-<!--                android:id="@+id/date_time"-->
-<!--                android:layout_width="220dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:padding="2dp"-->
-<!--                android:background="@drawable/rounded_bg2"-->
-<!--                android:text="date and time"-->
-<!--                android:textSize="12sp"-->
-<!--                android:textColor="@color/white"-->
-<!--                android:textStyle="bold"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="@id/appt_btn1"-->
-<!--                android:layout_marginStart="15dp"-->
-<!--                android:layout_marginTop="7dp"/>-->
-
-<!--            &lt;!&ndash; Appointment Detail &ndash;&gt;-->
-<!--            <TextView-->
-<!--                android:id="@+id/appt_detail"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Video Consultation"-->
-<!--                android:textColor="@color/white"-->
-<!--                android:textSize="18sp"-->
-<!--                android:textStyle="bold"-->
-<!--                app:layout_constraintStart_toStartOf="@id/rv"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/date_time"-->
-<!--                android:layout_marginTop="5dp"-->
-<!--                android:layout_marginLeft="15dp"/>-->
-
-<!--            &lt;!&ndash; Appointment Status &ndash;&gt;-->
-<!--            <TextView-->
-<!--                android:id="@+id/appt_status"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Waiting to Call"-->
-<!--                android:textColor="#44E5BA"-->
-<!--                android:textSize="12sp"-->
-<!--                android:textStyle="bold"-->
-<!--                app:layout_constraintStart_toStartOf="@id/appt_detail"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/appt_detail"-->
-<!--                android:layout_marginTop="4dp"-->
-<!--                android:layout_marginLeft="2dp"/>-->
-
-<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="10dp">-->
-
-<!--            &lt;!&ndash; Background Button &ndash;&gt;-->
-<!--            <ImageButton-->
-<!--                android:layout_width="360dp"-->
-<!--                android:layout_height="100dp"-->
-<!--                android:id="@+id/appt_btn2"-->
-<!--                android:background="@drawable/rounded_bg"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent" />-->
-
-<!--            &lt;!&ndash; Circular Image &ndash;&gt;-->
-<!--            <ImageView-->
-<!--                android:layout_width="50dp"-->
-<!--                android:layout_height="50dp"-->
-<!--                android:background="@drawable/circle_bg"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                android:layout_marginEnd="35dp"-->
-<!--                android:layout_marginTop="25dp" />-->
-
-<!--            &lt;!&ndash; Doctor Name &ndash;&gt;-->
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="doctor name"-->
-<!--                android:textColor="@color/white"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                android:layout_marginTop="75dp"-->
-<!--                android:layout_marginEnd="20dp"/>-->
-
-<!--            &lt;!&ndash; Vertical Divider &ndash;&gt;-->
-<!--            <ImageView-->
-<!--                android:layout_width="5dp"-->
-<!--                android:layout_height="65dp"-->
-<!--                android:id="@+id/rv2"-->
-<!--                android:src="@drawable/rounded_vertical"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="@id/appt_btn2"-->
-<!--                android:layout_marginStart="20dp"-->
-<!--                android:layout_marginTop="25dp" />-->
-
-<!--            &lt;!&ndash; Date and Time &ndash;&gt;-->
-<!--            <TextView-->
-<!--                android:id="@+id/date_time2"-->
-<!--                android:layout_width="220dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:padding="2dp"-->
-<!--                android:background="@drawable/rounded_bg2"-->
-<!--                android:text="date and time"-->
-<!--                android:textSize="12sp"-->
-<!--                android:textColor="@color/white"-->
-<!--                android:textStyle="bold"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="@id/appt_btn2"-->
-<!--                android:layout_marginStart="15dp"-->
-<!--                android:layout_marginTop="7dp"/>-->
-
-<!--            &lt;!&ndash; Appointment Detail &ndash;&gt;-->
-<!--            <TextView-->
-<!--                android:id="@+id/appt_detail2"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Video Consultation"-->
-<!--                android:textColor="@color/white"-->
-<!--                android:textSize="18sp"-->
-<!--                android:textStyle="bold"-->
-<!--                app:layout_constraintStart_toStartOf="@id/rv2"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/date_time2"-->
-<!--                android:layout_marginTop="5dp"-->
-<!--                android:layout_marginLeft="15dp"/>-->
-
-<!--            &lt;!&ndash; Appointment Status &ndash;&gt;-->
-<!--            <TextView-->
-<!--                android:id="@+id/appt_status2"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Waiting to Call"-->
-<!--                android:textColor="#44E5BA"-->
-<!--                android:textSize="12sp"-->
-<!--                android:textStyle="bold"-->
-<!--                app:layout_constraintStart_toStartOf="@id/appt_detail2"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/appt_detail2"-->
-<!--                android:layout_marginTop="4dp"-->
-<!--                android:layout_marginLeft="2dp"/>-->
-
-<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-<!--    </LinearLayout>-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/appointmentRecyclerView"
@@ -287,7 +96,7 @@
         android:layout_below="@+id/appointment_text"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
@@ -299,7 +108,7 @@
         android:layout_below="@+id/appointmentRecyclerView"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="5dp"
         android:id="@+id/chatroom_text">
 
         <TextView
@@ -320,5 +129,98 @@
             android:background="@android:color/transparent"
             android:layout_alignParentEnd="true" />
 </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/meetingText"
+        android:layout_width="wrap_content"
+        android:layout_height="227dp"
+        android:layout_below="@+id/chatroom_text"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Meeting Now"
+            android:textColor="@color/black"
+            android:textSize="17sp" />
+
+        <ImageButton
+            android:id="@+id/MeetingNowButton"
+            android:layout_width="42dp"
+            android:layout_height="32dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="5dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/arrow_icon" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/MeetingIDBox"
+            android:layout_width="298dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="80dp"
+            android:background="@drawable/white_box"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:id="@+id/meetingTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/blue_round"
+                android:drawableLeft="@drawable/baseline_add_ic_call_24"
+                android:drawablePadding="8dp"
+                android:padding="10dp"
+                android:text="Meeting ID"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/mID"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="48dp"
+                android:layout_marginBottom="18dp"
+                android:backgroundTint="@color/blue"
+                android:maxLines="1"
+                android:text=" "
+                android:textAlignment="center"
+                android:textColor="@color/blue"
+                android:textIsSelectable="true"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/MeetingIDBox"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/meetingTitle" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageButton
+            android:id="@+id/user_btn"
+            android:layout_width="54dp"
+            android:layout_height="56dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
+            android:src="@drawable/baseline_add_ic_call_24"
+            android:background="@drawable/circle_bg"
+            android:clickable="true"
+            android:focusable="true"
+            app:tint="@color/black" />
+
+
+    </RelativeLayout>
 
 </RelativeLayout>

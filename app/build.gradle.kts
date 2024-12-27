@@ -63,6 +63,11 @@ dependencies {
     implementation("com.google.guava:guava:31.0.1-android")
     // Required to use `Publisher` from Reactive Streams for streaming operations
     implementation("org.reactivestreams:reactive-streams:1.0.4")
+    implementation ("live.videosdk:rtc-android-sdk:0.1.37")
+    implementation ("com.github.TutorialsAndroid:GButton:v1.0.19")
+    implementation ("com.amitshekhar.android:android-networking:1.0.2")
+    implementation ("com.squareup.okhttp3:okhttp:4.9.3")
+    implementation(libs.firebase.auth)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
