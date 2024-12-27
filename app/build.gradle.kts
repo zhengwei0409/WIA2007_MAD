@@ -8,13 +8,17 @@ android {
     namespace = "com.example.madpart1"
     compileSdk = 34
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     defaultConfig {
         applicationId = "com.example.madpart1"
-        minSdk = 34
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
+        buildConfigField("String", "API_KEY", "\"AIzaSyDlLEBu8wa2isV77wV_RnxmNvg3qUitBF8\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -30,6 +34,10 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    packaging {
+        resources.excludes.add("META-INF/DEPENDENCIES")
+        resources.excludes.add("META-INF/INDEX.LIST")
     }
     buildFeatures {
         viewBinding = true
@@ -50,6 +58,11 @@ dependencies {
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
     implementation(libs.fragment)
+    implementation("com.google.ai.client.generativeai:generativeai:0.7.0")
+    // Required to use `ListenableFuture` from Guava Android for one-shot generation
+    implementation("com.google.guava:guava:31.0.1-android")
+    // Required to use `Publisher` from Reactive Streams for streaming operations
+    implementation("org.reactivestreams:reactive-streams:1.0.4")
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

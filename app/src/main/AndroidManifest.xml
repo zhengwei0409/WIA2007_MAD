@@ -57,6 +57,12 @@
             android:name=".NotificationsMenu"
             android:exported="false" />
         <activity
+            android:name=".ChatroomActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChatAI"
+            android:exported="false" />
+        <activity
             android:name=".HomePage"
             android:exported="true"/>
         <activity

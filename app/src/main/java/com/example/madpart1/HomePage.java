@@ -96,10 +96,16 @@ public class HomePage extends Fragment {
         });
 
         ImageButton btnAppointment = view.findViewById(R.id.btnAppointment);
+        ImageButton chatroom_btn = view.findViewById(R.id.chatroom_btn);
 
         btnAppointment.setOnClickListener(v -> {
             // Start a new activity using an Intent
             Intent intent = new Intent(getActivity(), AppointmentPage.class);
+            startActivity(intent);
+        });
+
+        chatroom_btn.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), ChatroomActivity.class);
             startActivity(intent);
         });
 
