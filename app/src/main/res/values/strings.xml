@@ -20,4 +20,15 @@
         <item>Earliest</item>
         <item>Latest</item>
     </string-array>
+
+    <string name="heading_one">Flexible Scheduling</string>
+    <string name="heading_two">Personal Health Chat</string>
+    <string name="heading_three">Healthcare Location Tracking</string>
+    <string name="heading_fourth">Virtual Consultations</string>
+
+    // Descriptions
+    <string name="desc_one">Find care and schedule appointments that fit your needs and availability</string>
+    <string name="desc_two">Chat one-on-one with your doctor for personalized diagnostics and healthcare advice</string>
+    <string name="desc_three">Locate Nearby Clinics and Hospitals for Quick and Easy Access to Care</string>
+    <string name="desc_fourth">Connect via video or audio conferencing for in-depth diagnostics and personalized care</string>
 </resources>

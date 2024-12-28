@@ -11,6 +11,8 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            updateUserOnlineStatus(true); // Mark user as online
+        }
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -57,6 +62,20 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    public void updateUserOnlineStatus(boolean isOnline) {
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+
+        firestore.collection("users").document(uid)
+                .update("online", isOnline)
+                .addOnSuccessListener(aVoid -> {
+                    System.out.println("User online status updated.");
+                })
+                .addOnFailureListener(e -> {
+                    System.err.println("Failed to update status: " + e.getMessage());
+                });
     }
 
     private void loadFragment(Fragment fragment) {

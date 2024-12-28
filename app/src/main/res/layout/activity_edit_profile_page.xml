@@ -32,7 +32,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/proPic"
         android:layout_width="136dp"
         android:layout_height="126dp"
         android:layout_marginStart="136dp"
@@ -51,7 +51,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/proPic" />
 
     <TextView
         android:id="@+id/details"
@@ -68,7 +68,6 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:text="Elon Musk"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.351"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,7 +78,6 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="elonmusk@gmail.com"
         app:layout_constraintStart_toStartOf="@+id/fullName"
         app:layout_constraintTop_toBottomOf="@+id/fullName" />
 
@@ -88,7 +86,6 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="018 888 8888"
         app:layout_constraintStart_toStartOf="@+id/emailAdd"
         app:layout_constraintTop_toBottomOf="@+id/emailAdd" />
 
@@ -97,7 +94,6 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:text="United State"
         app:layout_constraintStart_toStartOf="@+id/mobileNum"
         app:layout_constraintTop_toBottomOf="@+id/mobileNum" />
 
@@ -106,7 +102,6 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:text="Male"
         app:layout_constraintStart_toStartOf="@+id/nationality"
         app:layout_constraintTop_toBottomOf="@+id/nationality" />
 
@@ -115,7 +110,6 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:text="28 Jun 1971"
         app:layout_constraintStart_toStartOf="@+id/gender"
         app:layout_constraintTop_toBottomOf="@+id/gender" />
 
