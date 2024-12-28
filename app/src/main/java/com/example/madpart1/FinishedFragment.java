@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -93,35 +94,56 @@ public class FinishedFragment extends Fragment {
     }
 
     private void fetchAppointments() {
-        FirebaseFirestore.getInstance().collection("Appointments")
-                .whereEqualTo("status", "Finished") // Filter for finished appointments
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        String uid = auth.getCurrentUser().getUid();
+
+        // Fetch the logged-in user's name
+        db.collection("users")
+                .document(uid)
                 .get()
-                .addOnSuccessListener(querySnapshot -> {
-                    appointments.clear();
-                    for (DocumentSnapshot doc : querySnapshot.getDocuments()) {
-                        Appointment appointment = doc.toObject(Appointment.class);
-                        appointments.add(appointment);
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        String userName = documentSnapshot.getString("Full name");
+
+                        // Fetch finished appointments for the current user
+                        db.collection("Appointments")
+                                .whereEqualTo("status", "Finished") // Filter for finished appointments
+                                .whereEqualTo("user", userName) // Match appointments for the current user
+                                .get()
+                                .addOnSuccessListener(querySnapshot -> {
+                                    appointments.clear();
+                                    for (DocumentSnapshot doc : querySnapshot.getDocuments()) {
+                                        Appointment appointment = doc.toObject(Appointment.class);
+                                        appointments.add(appointment);
+                                    }
+
+                                    // Sort appointments by date
+                                    Collections.sort(appointments, (a1, a2) -> {
+                                        try {
+                                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                                            Date date1 = sdf.parse(a1.getDate());
+                                            Date date2 = sdf.parse(a2.getDate());
+                                            return date1.compareTo(date2); // Ascending order
+                                        } catch (ParseException e) {
+                                            e.printStackTrace();
+                                            return 0; // If parsing fails, treat as equal
+                                        }
+                                    });
+
+                                    // Notify the adapter about the data change
+                                    adapter.notifyDataSetChanged();
+                                })
+                                .addOnFailureListener(e -> {
+                                    Toast.makeText(getContext(), "Failed to load appointments: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                });
+                    } else {
+                        Toast.makeText(getContext(), "User not found. Please try again.", Toast.LENGTH_SHORT).show();
                     }
-
-                    // Sort appointments by date
-                    Collections.sort(appointments, (a1, a2) -> {
-                        // Parse the date strings into actual Date objects
-                        try {
-                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-                            Date date1 = sdf.parse(a1.getDate());
-                            Date date2 = sdf.parse(a2.getDate());
-                            return date1.compareTo(date2); // Ascending order
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                            return 0; // If parsing fails, treat as equal
-                        }
-                    });
-
-                    // Notify the adapter about the data change
-                    adapter.notifyDataSetChanged();
                 })
                 .addOnFailureListener(e -> {
-                    Toast.makeText(getContext(), "Failed to load data: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Failed to retrieve user information: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
 }
