@@ -21,8 +21,13 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -91,7 +96,7 @@ public class HomePage extends Fragment {
         user = mAuth.getCurrentUser();
         userID = user.getUid();
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_home_page, container, false);
+        View view = inflater.inflate(R.layout.fragment_home_page, container, false);
 
         meetingID = view.findViewById(R.id.mID);
         db.collection("users").document(userID).get()
@@ -115,7 +120,7 @@ public class HomePage extends Fragment {
                         UserDetails userDetails = documentSnapshot.toObject(UserDetails.class);
                         if (userDetails != null) {
                             String fullName = userDetails.getFullName();
-                            nameHomePage.setText(fullName.substring(0,fullName.indexOf(" ")));
+                            nameHomePage.setText(fullName.substring(0, fullName.indexOf(" ")));
                         }
                     } else {
                         Log.d(TAG, "No such document exists.");
@@ -153,7 +158,7 @@ public class HomePage extends Fragment {
         ImageButton profileBtn = view.findViewById(R.id.profile_pic);
 
         profileBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(),ProfilePage.class);
+            Intent intent = new Intent(getActivity(), ProfilePage.class);
             startActivity(intent);
         });
 
@@ -187,28 +192,60 @@ public class HomePage extends Fragment {
 
     private void loadAppointments() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseAuth auth = FirebaseAuth.getInstance();
 
-        db.collection("Appointments")
-                .whereEqualTo("status", "UpComing") // Filter only Upcoming appointments
-                .limit(2) // Fetch the first 2 documents
+        String uid = auth.getCurrentUser().getUid();
+
+        // Fetch the logged-in user's name
+        db.collection("users")
+                .document(uid)
                 .get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-                    if (!queryDocumentSnapshots.isEmpty()) {
-                        appointmentList.clear(); // Clear the current list to avoid duplicates
-                        for (DocumentSnapshot document : queryDocumentSnapshots) {
-                            Appointment appointment = document.toObject(Appointment.class);
-                            appointmentList.add(appointment);
-                        }
-                        appointmentAdapter.notifyDataSetChanged(); // Notify adapter about the updated list
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        String userName = documentSnapshot.getString("Full name");
+                        db.collection("Appointments")
+                                .whereEqualTo("status", "UpComing") // Filter only Upcoming appointments
+                                .whereEqualTo("user", userName) // Match appointments for the current user
+                                .limit(2) // Fetch the first 2 documents
+                                .get()
+                                .addOnSuccessListener(queryDocumentSnapshots -> {
+                                    if (!queryDocumentSnapshots.isEmpty()) {
+                                        appointmentList.clear(); // Clear the current list to avoid duplicates
+                                        for (DocumentSnapshot document : queryDocumentSnapshots.getDocuments()) {
+                                            Appointment appointment = document.toObject(Appointment.class);
+                                            appointmentList.add(appointment);
+                                        }
+
+                                        // Sort appointments by date
+                                        Collections.sort(appointmentList, (a1, a2) -> {
+                                            try {
+                                                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                                                Date date1 = sdf.parse(a1.getDate());
+                                                Date date2 = sdf.parse(a2.getDate());
+                                                return date1.compareTo(date2); // Ascending order
+                                            } catch (ParseException e) {
+                                                e.printStackTrace();
+                                                return 0; // If parsing fails, treat as equal
+                                            }
+                                        });
+
+                                        // Notify adapter about the updated list
+                                        appointmentAdapter.notifyDataSetChanged();
+                                    } else {
+                                        Toast.makeText(getContext(), "No upcoming appointments found.", Toast.LENGTH_SHORT).show();
+                                    }
+                                })
+                                .addOnFailureListener(e -> {
+                                    Log.e("Firestore Error", e.getMessage(), e);
+                                    Toast.makeText(getContext(), "Failed to load appointments.", Toast.LENGTH_SHORT).show();
+                                });
                     } else {
-                        Toast.makeText(getContext(), "No upcoming appointments found.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "User not found. Please try again.", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(e -> {
                     Log.e("Firestore Error", e.getMessage(), e);
-                    Toast.makeText(getContext(), "Failed to load appointments.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Failed to retrieve user information.", Toast.LENGTH_SHORT).show();
                 });
     }
-
-
 }

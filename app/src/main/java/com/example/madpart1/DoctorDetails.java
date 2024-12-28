@@ -23,6 +23,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FileDownloadTask;
@@ -158,6 +159,11 @@ public class DoctorDetails extends AppCompatActivity {
         }
     }
 
+    // Define a callback interface
+    interface UserNameCallback {
+        void onUserNameRetrieved(String userName);
+    }
+
     // Added: Method to handle the booking logic
     private void handleBookNow() {
         String dateInput = dateEditText.getText().toString().trim();
@@ -169,23 +175,58 @@ public class DoctorDetails extends AppCompatActivity {
             return;
         }
 
-        // Add appointment to Firestore
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        Map<String, Object> appointmentData = new HashMap<>();
-        appointmentData.put("date", dateInput);
-        appointmentData.put("time", selectedTime);
-        appointmentData.put("doctorAssigned", doctorName); // Using doctorName dynamically
-        appointmentData.put("status", "UpComing");
+        // Retrieve user name asynchronously
+        getUserNameFromUID(userName -> {
+            if (userName == null) {
+                Toast.makeText(DoctorDetails.this, "User name not available. Please try again.", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
-        db.collection("Appointments")
-                .add(appointmentData)
-                .addOnSuccessListener(documentReference -> {
-                    Toast.makeText(DoctorDetails.this, "Appointment booked successfully!", Toast.LENGTH_SHORT).show();
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(DoctorDetails.this, "Error booking appointment: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                });
+
+            // Add appointment to Firestore
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            Map<String, Object> appointmentData = new HashMap<>();
+            appointmentData.put("date", dateInput);
+            appointmentData.put("time", selectedTime);
+            appointmentData.put("doctorAssigned", doctorName); // Using doctorName dynamically
+            appointmentData.put("status", "UpComing");
+            appointmentData.put("user", userName);
+
+            db.collection("Appointments")
+                    .add(appointmentData)
+                    .addOnSuccessListener(documentReference -> {
+                        Toast.makeText(DoctorDetails.this, "Appointment booked successfully!", Toast.LENGTH_SHORT).show();
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(DoctorDetails.this, "Error booking appointment: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
+        });
     }
+
+                // Updated method to retrieve user name based on UID using a callback
+        private void getUserNameFromUID(UserNameCallback callback) {
+            FirebaseAuth auth = FirebaseAuth.getInstance();
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+            String uid = auth.getCurrentUser().getUid();
+
+            db.collection("users")
+                    .document(uid)
+                    .get()
+                    .addOnSuccessListener(documentSnapshot -> {
+                        if (documentSnapshot.exists()) {
+                            String userName = documentSnapshot.getString("Full name");
+                            callback.onUserNameRetrieved(userName);
+                        } else {
+                            Toast.makeText(this, "User not found.", Toast.LENGTH_SHORT).show();
+                            callback.onUserNameRetrieved(null);
+                        }
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(this, "Error retrieving user name: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        callback.onUserNameRetrieved(null);
+                    });
+        }
 
     // Added: Method to validate date format
     private boolean isValidDate(String date) {
