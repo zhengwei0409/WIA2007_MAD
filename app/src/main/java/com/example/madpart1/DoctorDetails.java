@@ -1,9 +1,17 @@
 package com.example.madpart1;
 
+import android.annotation.SuppressLint;
+import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -32,6 +40,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -65,6 +74,8 @@ public class DoctorDetails extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        // ----- notification part -------
+        createNotificationChannel();
 
 //        loadingPage = findViewById(R.id.loading_overlay);
 //        loadingPage.setVisibility(View.VISIBLE);
@@ -124,6 +135,11 @@ public class DoctorDetails extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 handleBookNow();
+
+                // Schedule the notification for December 7, 2024, at 3:00 PM
+                scheduleNotification(2024, 12, 29, 13, 42); // 15:00 is 3:00 PM in 24-hour format
+
+
             }
         });
 
@@ -232,5 +248,55 @@ public class DoctorDetails extends AppCompatActivity {
     private boolean isValidDate(String date) {
         String datePattern = "^(\\d{4})-(\\d{2})-(\\d{2})$";
         return !TextUtils.isEmpty(date) && Pattern.matches(datePattern, date);
+    }
+
+    // below method are for notification
+    private void createNotificationChannel() {
+        CharSequence name = "MyNotificationChannel";
+        String description = "Channel for scheduled notifications";
+        int importance = NotificationManager.IMPORTANCE_HIGH;
+        NotificationChannel channel = new NotificationChannel("myChannelId", name, importance);
+        channel.setDescription(description);
+
+        NotificationManager notificationManager = getSystemService(NotificationManager.class);
+        notificationManager.createNotificationChannel(channel);
+    }
+
+    @SuppressLint("ScheduleExactAlarm")
+    private void scheduleNotification(int year, int month, int day, int hour, int minute) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) { // API 31+
+            AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            if (!alarmManager.canScheduleExactAlarms()) {
+                Intent intent = new Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM);
+                startActivity(intent);
+                return; // Exit the method as the exact alarm is not enabled yet
+            }
+        }
+
+        // Create a Calendar instance and set the date and time
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month - 1, day, hour, minute, 0); // Note: Month is 0-based in Calendar
+        long triggerAtMillis = calendar.getTimeInMillis();
+
+        // Check if the time is in the past
+        if (triggerAtMillis < System.currentTimeMillis()) {
+            Toast.makeText(this, "The selected time is in the past!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Prepare the intent and PendingIntent as before
+        Intent intent = new Intent(this, NotificationReceiver.class);
+        intent.putExtra("notificationId", 1);
+        intent.putExtra("message", "Don’t forget about appointment!");
+
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        if (alarmManager != null) {
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
+        }
+
+        Toast.makeText(this, "Notification scheduled for " + day + "/" + month + "/" + year + " " + hour + ":" + minute, Toast.LENGTH_SHORT).show();
     }
 }
