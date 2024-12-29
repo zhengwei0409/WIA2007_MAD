@@ -1,6 +1,8 @@
 package com.example.madpart1;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +23,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -156,6 +163,7 @@ public class HomePage extends Fragment {
         });
 
         ImageButton profileBtn = view.findViewById(R.id.profile_pic);
+        loadProfileImage(profileBtn);
 
         profileBtn.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), ProfilePage.class);
@@ -247,5 +255,54 @@ public class HomePage extends Fragment {
                     Log.e("Firestore Error", e.getMessage(), e);
                     Toast.makeText(getContext(), "Failed to retrieve user information.", Toast.LENGTH_SHORT).show();
                 });
+    }
+    private void loadProfileImage(ImageButton profileBtn) {
+        db.collection("users").document(userID).get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        String dob = documentSnapshot.getString("Date of Birth");
+                        if (dob != null && !dob.trim().isEmpty()) {
+                            // Extract day (DD) from "DD / MM / YYYY"
+                            String[] dobParts = dob.split(" / ");
+                            if (dobParts.length >= 1) {
+                                try {
+                                    int day = Integer.parseInt(dobParts[0].trim());
+                                    int imageIndex = day % 10; // Calculate DD % 10
+                                    fetchProfileImage(imageIndex, profileBtn);
+                                } catch (NumberFormatException e) {
+                                    Log.e(TAG, "Invalid day format in Date of Birth", e);
+                                }
+                            } else {
+                                Log.e(TAG, "Date of Birth format is incorrect: " + dob);
+                            }
+                        } else {
+                            Log.e(TAG, "Date of Birth is null or empty");
+                        }
+                    } else {
+                        Log.e(TAG, "User document does not exist");
+                    }
+                })
+                .addOnFailureListener(e -> Log.e(TAG, "Error fetching Date of Birth", e));
+    }
+
+    private void fetchProfileImage(int imageIndex, ImageButton profileBtn) {
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        String imageName = imageIndex + ".jpg"; // Example: 0.jpg, 1.jpg, etc.
+        StorageReference storageRef = storage.getReference().child(imageName);
+
+        try {
+            final File tempFile = File.createTempFile("profile", "jpg");
+            storageRef.getFile(tempFile)
+                    .addOnSuccessListener(taskSnapshot -> {
+                        Bitmap bitmap = BitmapFactory.decodeFile(tempFile.getAbsolutePath());
+                        profileBtn.setImageBitmap(bitmap);
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(getContext(), "Failed to load profile picture", Toast.LENGTH_SHORT).show();
+                        Log.e(TAG, "Error fetching profile picture from Firebase", e);
+                    });
+        } catch (IOException e) {
+            Log.e(TAG, "Error creating temporary file for profile picture", e);
+        }
     }
 }

@@ -2,12 +2,16 @@ package com.example.madpart1;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +22,11 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.io.File;
+import java.io.IOException;
 
 public class ProfilePage extends AppCompatActivity {
 
@@ -27,6 +36,8 @@ public class ProfilePage extends AppCompatActivity {
     FirebaseAuth mAuth;
     private static final String TAG = "ProfilePage";
     private FirebaseFirestore db;
+    String userID;
+    ImageView proPic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +63,9 @@ public class ProfilePage extends AppCompatActivity {
 
         if (user != null) {
 
-            String userID = user.getUid();
+            userID = user.getUid();
+            proPic = findViewById(R.id.profilePic);
+            loadProfilePicture();
             db.collection("users").document(userID).get().addOnSuccessListener(documentSnapshot -> {
                 if (documentSnapshot.exists()){
                     UserDetails userDetails = documentSnapshot.toObject(UserDetails.class);
@@ -125,4 +138,45 @@ public class ProfilePage extends AppCompatActivity {
                 });
     }
 
+    private void loadProfilePicture() {
+        db.collection("users").document(userID).get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        String dob = documentSnapshot.getString("Date of Birth");
+                        if (dob != null) {
+                            // Extract day (DD) from "DD / MM / YYYY"
+                            String[] dobParts = dob.split(" / ");
+                            if (dobParts.length > 0) {
+                                try {
+                                    int day = Integer.parseInt(dobParts[0]);
+                                    int imageIndex = day % 10; // Calculate DD % 10
+                                    fetchProfileImage(imageIndex);
+                                } catch (NumberFormatException e) {
+                                    Log.e(TAG, "Invalid day format in Date of Birth", e);
+                                }
+                            }
+                        }
+                    }
+                })
+                .addOnFailureListener(e -> Log.e(TAG, "Error fetching Date of Birth", e));
+    }
+
+    private void fetchProfileImage(int imageIndex) {
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        String imageName = imageIndex + ".jpg";
+        StorageReference storageRef = storage.getReference().child(imageName);
+
+        try {
+            final File tempFile = File.createTempFile("profile", "jpg");
+            storageRef.getFile(tempFile).addOnSuccessListener(taskSnapshot -> {
+                Bitmap bitmap = BitmapFactory.decodeFile(tempFile.getAbsolutePath());
+                proPic.setImageBitmap(bitmap);
+            }).addOnFailureListener(e -> {
+                Toast.makeText(ProfilePage.this, "Failed to load profile picture", Toast.LENGTH_SHORT).show();
+                Log.e(TAG, "Error fetching profile picture", e);
+            });
+        } catch (IOException e) {
+            Log.e(TAG, "Error creating temporary file", e);
+        }
+    }
 }
