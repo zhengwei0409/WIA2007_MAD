@@ -33,12 +33,13 @@
             android:layout_below="@+id/name"
             android:textSize="25sp"/>
 
-        <ImageButton
-            android:id="@+id/profile_btn"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/circle_bg"
-            android:layout_alignParentRight="true"/>
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="180dp"
+            android:layout_height="75dp"
+            android:src="@drawable/medconnect"
+            android:translationX="210dp"
+            />
 
     </RelativeLayout>
 
@@ -48,35 +49,6 @@
         android:layout_below="@+id/header"
         android:id="@+id/search_bar"
         android:layout_marginTop="20dp">
-
-        <ImageView
-            android:id="@+id/search_bg"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:src="@drawable/search_bg"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:id="@+id/search_ic"
-            android:background="@drawable/ic_search"
-            android:backgroundTint="#AFAFAF"
-            app:layout_constraintStart_toStartOf="@+id/search_bg"
-            app:layout_constraintTop_toTopOf="@+id/search_bg"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"/>
-
-        <EditText
-            android:id="@+id/search_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@+id/search_bg"
-            android:hint="Search doctor"
-            android:layout_marginLeft="45dp"
-            android:textColorHint="#AFAFAF"
-            android:inputType="text"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/doctor_list"

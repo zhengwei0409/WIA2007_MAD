@@ -161,12 +161,6 @@ public class MainPage extends Fragment {
             }
         });
 
-        ImageButton imageButton = view.findViewById(R.id.profile_btn);
-
-        imageButton.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(),ProfilePage.class);
-            startActivity(intent);
-        });
 
         fetchDoctorData("2iyRLsCJGT8Fvoa4ZvQV", doctorName1, doctorDepartment1, doctorRating1);
         fetchDoctorData("PPB7BRjvKriQkcs5bRuy", doctorName2, doctorDepartment2, doctorRating2);
@@ -176,22 +170,9 @@ public class MainPage extends Fragment {
         secondDoctorButton.setOnClickListener(v -> openDoctorDetails("PPB7BRjvKriQkcs5bRuy"));
         thirdDoctorButton.setOnClickListener(v -> openDoctorDetails("W9F5SabcegStwfkA8KIQ"));
 
-        EditText searchInput = view.findViewById(R.id.search_input);
-        searchInput.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {}
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
-                searchDoctors(charSequence.toString());
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {}
-        });
-
         return view;
     }
+
 
     // Fetch doctor data from Firestore
     private void fetchDoctorData(String doctorId, TextView nameView, TextView departmentView, TextView ratingView) {
