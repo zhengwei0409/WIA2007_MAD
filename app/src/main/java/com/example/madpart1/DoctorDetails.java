@@ -137,7 +137,7 @@ public class DoctorDetails extends AppCompatActivity {
                 handleBookNow();
 
                 // Schedule the notification for December 7, 2024, at 3:00 PM
-                scheduleNotification(2024, 12, 29, 13, 42); // 15:00 is 3:00 PM in 24-hour format
+                scheduleNotification(2024, 12, 31, 9, 51); // 15:00 is 3:00 PM in 24-hour format
 
 
             }

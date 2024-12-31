@@ -30,8 +30,9 @@ public class NotificationsMenu extends AppCompatActivity {
 
         // Sample data
         List<Item> items = new ArrayList<>();
-        items.add(new Item("Dr.Bean Bean","Dec 7 2024", R.drawable.doc2));
-        items.add(new Item("Dr.2 Bean 2 ","Dec 11 2026", R.drawable.doc2));
+        items.add(new Item("Dr.Bean Bean","JAN 10 2025", R.drawable.doc2));
+        items.add(new Item("Dr.Kim Ji-soo ","DEC 26 2024", R.drawable.koreandoc));
+        items.add(new Item("Dr.Mike ","JUN 18 2024", R.drawable.drmike));
 
         // Find the RecyclerView
         RecyclerView recyclerView = findViewById(R.id.recycleView);
