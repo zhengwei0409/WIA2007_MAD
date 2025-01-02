@@ -207,7 +207,7 @@ public class ChatroomActivity extends AppCompatActivity {
             case "1": // Schedule an Appointment
                 addDelayedResponse("Redirecting you to the Appointment Booking page...");
                 messageHandler.postDelayed(() -> {
-                    Intent appointmentIntent = new Intent(ChatroomActivity.this, AppointmentPage.class);
+                    Intent appointmentIntent = new Intent(ChatroomActivity.this, MainPage.class);
                     startActivity(appointmentIntent);
                 }, MESSAGE_DELAY);
                 break;
@@ -224,6 +224,6 @@ public class ChatroomActivity extends AppCompatActivity {
                 addDelayedResponse("Invalid option. Please choose 1, 2, or 3.");
                 break;
         }
-        isAwaitingNextAction = false;
+        isAwaitingNextAction = true;
     }
 }
