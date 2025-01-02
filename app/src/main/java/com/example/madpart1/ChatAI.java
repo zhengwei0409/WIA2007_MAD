@@ -74,8 +74,9 @@ public class ChatAI extends AppCompatActivity{
         });
 
         backButton.setOnClickListener(v -> {
-            Intent intent = new Intent(ChatAI.this, ChatroomActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent(ChatAI.this, ChatroomActivity.class);
+//            startActivity(intent);
+            finish();
         });
     }
 
