@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import live.videosdk.rtc.android.Meeting;
@@ -124,6 +125,30 @@ public class MeetingActivity extends AppCompatActivity {
         findViewById(R.id.btnLeave).setOnClickListener(view -> {
             // this will make the local participant leave the meeting
             meeting.leave();
+
+            final String meetingId = getIntent().getStringExtra("meetingId");
+            // Update Firestore
+            db.collection("Appointments")
+                    .whereEqualTo("Meeting ID", meetingId)
+                    .get()
+                    .addOnSuccessListener(queryDocumentSnapshots -> {
+                        if (!queryDocumentSnapshots.isEmpty()) {
+                            DocumentSnapshot document = queryDocumentSnapshots.getDocuments().get(0);
+                            db.collection("Appointments").document(document.getId())
+                                    .update("status", "Finished")
+                                    .addOnSuccessListener(aVoid -> {
+                                        Toast.makeText(MeetingActivity.this, "Appointment status updated to Finished", Toast.LENGTH_SHORT).show();
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        Toast.makeText(MeetingActivity.this, "Failed to update status: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    });
+                        } else {
+                            Toast.makeText(MeetingActivity.this, "No appointment found for this Meeting ID", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(MeetingActivity.this, "Error fetching appointment: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
         });
     }
 }
