@@ -115,6 +115,29 @@ public class JoinActivity extends AppCompatActivity {
                                         Toast.makeText(JoinActivity.this, "Error fetching user: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                                     });
 
+                            db.collection("Appointments")
+                                    .whereEqualTo("user", userName) // Use appropriate field to identify the user's appointment
+                                    .get()
+                                    .addOnSuccessListener(queryDocumentSnapshots -> {
+                                        if (!queryDocumentSnapshots.isEmpty()) {
+                                            DocumentSnapshot document = queryDocumentSnapshots.getDocuments().get(0);
+                                            db.collection("Appointments").document(document.getId())
+                                                    .update("Meeting ID", meetingId)
+                                                    .addOnSuccessListener(aVoid -> {
+                                                        Toast.makeText(JoinActivity.this, "Meeting ID added to Appointments", Toast.LENGTH_SHORT).show();
+                                                    })
+                                                    .addOnFailureListener(e -> {
+                                                        Toast.makeText(JoinActivity.this, "Failed to update Appointments: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                    });
+                                        } else {
+                                            Toast.makeText(JoinActivity.this, "No appointment found for the user", Toast.LENGTH_SHORT).show();
+                                        }
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        Toast.makeText(JoinActivity.this, "Error fetching appointment: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    });
+
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
