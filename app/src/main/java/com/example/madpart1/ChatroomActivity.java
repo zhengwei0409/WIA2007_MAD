@@ -9,6 +9,10 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -196,7 +200,7 @@ public class ChatroomActivity extends AppCompatActivity {
         conclusionMessage = " been experiencing " + selectedSymptoms + " for " + userInput + ".";
         addResponse("Got it. You've" + conclusionMessage);
         // Provide next actions or recommendations
-        addResponse("Would you like to: \n1. Schedule an appointment\n2. Get general advice from MedConnect AI");
+        addResponse("Would you like to: \n1. Back to Home Page\n2. Get general advice from MedConnect AI");
         isAwaitingNextAction = true;
         isAskingDuration = false;
     }
@@ -205,11 +209,8 @@ public class ChatroomActivity extends AppCompatActivity {
     private void handleNextAction(String userInput) {
         switch (userInput) {
             case "1": // Schedule an Appointment
-                addDelayedResponse("Redirecting you to the Appointment Booking page...");
-                messageHandler.postDelayed(() -> {
-                    Intent appointmentIntent = new Intent(ChatroomActivity.this, MainPage.class);
-                    startActivity(appointmentIntent);
-                }, MESSAGE_DELAY);
+                addDelayedResponse("Redirecting you to Home Page...");
+                finish();
                 break;
             case "2": // Chat with AI
                 addDelayedResponse("Starting Chat with AI...");

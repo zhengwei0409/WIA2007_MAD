@@ -239,9 +239,10 @@ public class HomePage extends Fragment {
 
                                         // Notify adapter about the updated list
                                         appointmentAdapter.notifyDataSetChanged();
-                                    } else {
-                                        Toast.makeText(getContext(), "No upcoming appointments found.", Toast.LENGTH_SHORT).show();
                                     }
+//                                    else {
+//                                        Toast.makeText(getContext(), "No upcoming appointments found.", Toast.LENGTH_SHORT).show();
+//                                    }
                                 })
                                 .addOnFailureListener(e -> {
                                     Log.e("Firestore Error", e.getMessage(), e);
