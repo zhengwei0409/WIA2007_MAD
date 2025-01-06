@@ -1,5 +1,7 @@
 package com.example.madpart1;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -23,6 +25,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -95,6 +99,10 @@ public class MainPage extends Fragment {
     private RecyclerView recyclerView;
     private DoctorAdapter doctorAdapter;
     private List<Doctor> doctorList;
+    TextView name;
+    FirebaseUser user;
+    String userID;
+    FirebaseAuth mAuth;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -103,6 +111,25 @@ public class MainPage extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main_page, container, false);
+
+        name = view.findViewById(R.id.name);
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
+        userID = user.getUid();
+
+        db.collection("users").document(userID).get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        UserDetails userDetails = documentSnapshot.toObject(UserDetails.class);
+                        if (userDetails != null) {
+                            String fullName = userDetails.getFullName();
+                            name.setText(fullName.substring(0, fullName.indexOf(" ")));
+                        }
+                    } else {
+                        Log.d(TAG, "No such document exists.");
+                    }
+                })
+                .addOnFailureListener(e -> Log.e(TAG, "Error fetching document", e));
 
         recyclerView = view.findViewById(R.id.doctor_list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
