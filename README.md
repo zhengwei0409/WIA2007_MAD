@@ -12,7 +12,6 @@ The MedConnect app includes the following key functional requirements:
     *   **Login** 
     *   **Logout** 
     *   **Forgot Password** 
-    *   **Profile Pag** 
     *   **Edit Profile Details** 
 *   **Appointment Scheduling** 
     *   **Search Doctor** 
