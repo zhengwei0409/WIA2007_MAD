@@ -30,7 +30,6 @@ The MedConnect app includes the following key functional requirements:
 
 ## Getting Started
 
-To get a copy of the project up and running on your local machine for development and testing purposes, you can clone this repository.
 
 ```bash
 git clone https://github.com/zhengwei0409/WIA2007_MAD.git
